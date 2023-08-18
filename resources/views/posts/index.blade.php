@@ -11,6 +11,7 @@
                     <th width="80px">Id</th>
                     <th>Title</th>
                     <th>Auther Name</th>
+                    <th>Content</th>
                     <th width="150px">Action</th>
                     </thead>
                     <tbody>
@@ -19,6 +20,7 @@
                             <td>{{ $post->id }}</td>
                             <td>{{ $post->title }}</td>
                             <td>{{ $post->users->name }}</td>
+                            <td>{{ \Illuminate\Support\Str::words($post->content, 50 )  }}</td>
                             <td>
                                 <form action="{{ route('posts.destroy',$post->id) }}" method="POST">
 

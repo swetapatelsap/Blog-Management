@@ -3,8 +3,7 @@
 @section('content')
     <div class="bg-light p-5 rounded">
         @auth
-            <h1><a href="{{route('posts.index')}}">Posts</a></h1>
-
+            <h1><a href="{{route('posts.index')}}">List of Post</a></h1>
         @endauth
 
         @guest
@@ -22,6 +21,7 @@
                             <th width="80px">Id</th>
                             <th>Title</th>
                             <th>Auther Name</th>
+                            <th>Content</th>
                             <th width="150px">Action</th>
                             </thead>
                             <tbody>
@@ -30,6 +30,7 @@
                                     <td>{{ $post->id }}</td>
                                     <td>{{ $post->title }}</td>
                                     <td>{{ $post->users->name }}</td>
+                                    <td>{{ \Illuminate\Support\Str::words($post->content, 50 )  }}</td>
                                     <td>
                                         @if(auth()->check() && auth()->user()->id == $post->user_id)
                                             <form action="{{ route('posts.destroy',$post->id) }}" method="POST">
