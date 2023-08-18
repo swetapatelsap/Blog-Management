@@ -26,12 +26,14 @@
 
                                     <a class="btn btn-info" href="{{ route('posts.show',$post->id) }}">View</a></br>
 
-                                    <a class="btn btn-primary" href="{{ route('posts.edit',$post->id) }}">Edit</a></br>
 
-                                    @csrf
-                                    @method('DELETE')
-
-                                    <button type="submit" class="btn btn-danger">Delete Post</button>
+                                    @if(auth()->check() && auth()->user()->id == $post->user_id)
+                                        <a class="btn btn-primary"
+                                           href="{{ route('posts.edit',$post->id) }}">Edit</a></br>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Delete Post</button>
+                                    @endif
                                 </form>
                             </td>
                         </tr>

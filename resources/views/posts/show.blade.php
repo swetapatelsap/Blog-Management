@@ -12,21 +12,21 @@
                         <p>
                             {{ $post->body }}
                         </p>
-                        <hr />
+                        <hr/>
                         <h4>Display Comments</h4>
 
-                        @include('posts.commentsDisplay', ['comments' => $post->comments, 'post_id' => $post->id])
+                            @include('posts.commentsDisplay', ['comments' => $post->comments, 'post_id' => $post->id,'user_id'=>$post->user_id])
 
-                        <hr />
+                        <hr/>
                         <h4>Add comment</h4>
                         <form method="post" action="{{ route('comments.store'   ) }}">
                             @csrf
                             <div class="form-group">
                                 <textarea class="form-control" name="body"></textarea>
-                                <input type="hidden" name="post_id" value="{{ $post->id }}" />
+                                <input type="hidden" name="post_id" value="{{ $post->id }}"/>
                             </div>
                             <div class="form-group">
-                                <input type="submit" class="btn btn-success" value="Add Comment" />
+                                <input type="submit" class="btn btn-success" value="Add Comment"/>
                             </div>
                         </form>
                     </div>
