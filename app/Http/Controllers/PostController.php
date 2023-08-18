@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -15,7 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('users')->paginate(5);
+        $posts = Post::with('users')->where('user_id',Auth::user()->id)->paginate(5);
         return view('posts.index', compact('posts'));
     }
 
